@@ -17,3 +17,22 @@ It generates low-resolution (e.g. 512x512) baked PNG textures, replaces material
    - One `.fbx` file per object with the baked texture embedded
 
 No configuration needed. Fast, clean, and optimized export for real-time engines.
+### ⚙️ Requirements
+
+- **Blender 4.4+** (developed and tested in Blender 4.4)
+- **Cycles** render engine (the script switches to it automatically)
+- Each selected mesh needs a **node-based material** whose *Base Color* is driven by an **Image Texture** node
+- Only the **Base Color** channel is baked (Emit bake, no lighting/shadows)
+
+### 🧰 Troubleshooting
+
+| Message | Cause | Fix |
+| --- | --- | --- |
+| `Please save the .blend file first!` | The file was never saved | Save the `.blend` file, then run the script |
+| `... has no node-based material!` | Object uses an old-style material | Assign a material with *Use Nodes* enabled |
+| `No Principled BSDF found ...` | Material has no Principled BSDF node | Add one, or use a compatible material |
+| `Base Color ... is not linked!` / `is not from an image texture node!` | Base Color comes from a flat color or procedural node | Plug an Image Texture into Base Color |
+
+### 📄 License
+
+MIT – see [LICENSE](LICENSE).
